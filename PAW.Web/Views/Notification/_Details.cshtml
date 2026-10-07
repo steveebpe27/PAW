@@ -1,0 +1,9 @@
+@model PAW.Models.DTO.NotificationDTO
+<dl class="row">
+<dt class="col-sm-3">Id</dt><dd class="col-sm-9">@Model.Id</dd>
+<dt class="col-sm-3">UserId</dt><dd class="col-sm-9">@Model.UserId</dd>
+<dt class="col-sm-3">Message</dt><dd class="col-sm-9">@Model.Message</dd>
+<dt class="col-sm-3">IsRead</dt><dd class="col-sm-9">@Model.IsRead</dd>
+<dt class="col-sm-3">CreatedAt</dt><dd class="col-sm-9">@(Model.CreatedAt?.ToString("yyyy-MM-dd HH:mm") ?? "—")</dd>
+</dl>
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

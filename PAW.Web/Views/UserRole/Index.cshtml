@@ -1,0 +1,40 @@
+@model PAW.Models.DTO.PageResult<PAW.Models.DTO.UserRoleDTO>
+@{ ViewData["Title"] = "UserRole Page"; }
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>UserRole</h2>
+        <a asp-action="Create" asp-route-page="@Model.Page" class="btn btn-primary" data-crud data-title="Add UserRole"><i class="bi bi-plus-circle"></i> Add UserRole</a>
+    </div>
+    <div class="card shadow-sm"><div class="card-body"><div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark"><tr><th>CrudId</th>
+<th>Id</th>
+<th>RoldId</th>
+<th>UserId</th><th class="text-center">Actions</th></tr></thead>
+            <tbody>
+            @if (Model.Items.Any()) {
+                foreach (var item in Model.Items) {
+                <tr>
+                    <td>@item.CrudId</td>
+<td>@item.Id</td>
+<td>@item.RoldId</td>
+<td>@item.UserId</td>
+                    <td class="text-center"><div class="btn-group" role="group">
+                        <a asp-action="Edit" asp-route-id="@item.CrudId" asp-route-page="@Model.Page" class="btn btn-sm btn-warning" data-crud data-title="Edit UserRole">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.CrudId" class="btn btn-sm btn-info" data-crud data-title="Details UserRole">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.CrudId" asp-route-page="@Model.Page" class="btn btn-sm btn-danger" data-crud data-title="Delete UserRole">Delete</a>
+                    </div></td>
+                </tr>
+                }
+            } else { <tr><td colspan="5" class="text-center">No records found.</td></tr> }
+            </tbody>
+        </table>
+    </div>
+    <partial name="_Pagination" model="new PAW.Web.Models.PagerModel(Model.Page, Model.TotalPages, Model.TotalCount)" />
+    </div></div>
+</div>
+<partial name="_CrudModal" />
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/crud.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,18 @@
+@model PAW.Models.DTO.SupplierDTO
+@{ var mode = (string)ViewData["Mode"]!; }
+<form asp-action="@mode" asp-route-id="@ViewData["RecordId"]" method="post" data-crud-form>
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="page" value="@ViewData["Page"]" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row"><div class="col-md-6 mb-3"><label asp-for="SupplierName" class="form-label"></label><input asp-for="SupplierName" class="form-control" /><span asp-validation-for="SupplierName" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="ContactName" class="form-label"></label><input asp-for="ContactName" class="form-control" /><span asp-validation-for="ContactName" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="ContactTitle" class="form-label"></label><input asp-for="ContactTitle" class="form-control" /><span asp-validation-for="ContactTitle" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="Phone" class="form-label"></label><input asp-for="Phone" class="form-control" /><span asp-validation-for="Phone" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="Address" class="form-label"></label><input asp-for="Address" class="form-control" /><span asp-validation-for="Address" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="City" class="form-label"></label><input asp-for="City" class="form-control" /><span asp-validation-for="City" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="Country" class="form-label"></label><input asp-for="Country" class="form-control" /><span asp-validation-for="Country" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="LastModified" class="form-label"></label><input asp-for="LastModified" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" class="form-control" /><span asp-validation-for="LastModified" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="ModifiedBy" class="form-label"></label><input asp-for="ModifiedBy" class="form-control" /><span asp-validation-for="ModifiedBy" class="text-danger"></span></div></div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+</form>

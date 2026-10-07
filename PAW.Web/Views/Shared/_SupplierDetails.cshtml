@@ -1,0 +1,15 @@
+@model PAW.Models.DTO.SupplierDTO
+<section class="card mb-3"><div class="card-header">Supplier</div><div class="card-body">
+<dl class="row">
+<dt class="col-sm-3">SupplierId</dt><dd class="col-sm-9">@Model.SupplierId</dd>
+<dt class="col-sm-3">SupplierName</dt><dd class="col-sm-9">@Model.SupplierName</dd>
+<dt class="col-sm-3">ContactName</dt><dd class="col-sm-9">@Model.ContactName</dd>
+<dt class="col-sm-3">ContactTitle</dt><dd class="col-sm-9">@Model.ContactTitle</dd>
+<dt class="col-sm-3">Phone</dt><dd class="col-sm-9">@Model.Phone</dd>
+<dt class="col-sm-3">Address</dt><dd class="col-sm-9">@Model.Address</dd>
+<dt class="col-sm-3">City</dt><dd class="col-sm-9">@Model.City</dd>
+<dt class="col-sm-3">Country</dt><dd class="col-sm-9">@Model.Country</dd>
+<dt class="col-sm-3">LastModified</dt><dd class="col-sm-9">@(Model.LastModified?.ToString("yyyy-MM-dd HH:mm") ?? "—")</dd>
+<dt class="col-sm-3">ModifiedBy</dt><dd class="col-sm-9">@Model.ModifiedBy</dd>
+</dl>
+</div></section>

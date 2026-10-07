@@ -1,0 +1,11 @@
+@model PAW.Models.DTO.ComponentDTO
+@{ var mode = (string)ViewData["Mode"]!; }
+<form asp-action="@mode" asp-route-id="@ViewData["RecordId"]" method="post" data-crud-form>
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="page" value="@ViewData["Page"]" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row"><div class="col-md-6 mb-3"><label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control" /><span asp-validation-for="Name" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="Content" class="form-label"></label><textarea asp-for="Content" class="form-control" rows="3"></textarea><span asp-validation-for="Content" class="text-danger"></span></div></div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+</form>

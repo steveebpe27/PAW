@@ -1,0 +1,42 @@
+@model PAW.Models.DTO.PageResult<PAW.Models.DTO.CategoryDTO>
+@{ ViewData["Title"] = "Category Page"; }
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Category</h2>
+        <a asp-action="Create" asp-route-page="@Model.Page" class="btn btn-primary" data-crud data-title="Add Category"><i class="bi bi-plus-circle"></i> Add Category</a>
+    </div>
+    <div class="card shadow-sm"><div class="card-body"><div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark"><tr><th>CategoryId</th>
+<th>CategoryName</th>
+<th>Description</th>
+<th>LastModified</th>
+<th>ModifiedBy</th><th class="text-center">Actions</th></tr></thead>
+            <tbody>
+            @if (Model.Items.Any()) {
+                foreach (var item in Model.Items) {
+                <tr>
+                    <td>@item.CategoryId</td>
+<td><strong>@item.CategoryName</strong></td>
+<td>@item.Description</td>
+<td>@(item.LastModified?.ToString("yyyy-MM-dd HH:mm") ?? "—")</td>
+<td>@item.ModifiedBy</td>
+                    <td class="text-center"><div class="btn-group" role="group">
+                        <a asp-action="Edit" asp-route-id="@item.CategoryId" asp-route-page="@Model.Page" class="btn btn-sm btn-warning" data-crud data-title="Edit Category">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.CategoryId" class="btn btn-sm btn-info" data-crud data-title="Details Category">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.CategoryId" asp-route-page="@Model.Page" class="btn btn-sm btn-danger" data-crud data-title="Delete Category">Delete</a>
+                    </div></td>
+                </tr>
+                }
+            } else { <tr><td colspan="6" class="text-center">No records found.</td></tr> }
+            </tbody>
+        </table>
+    </div>
+    <partial name="_Pagination" model="new PAW.Web.Models.PagerModel(Model.Page, Model.TotalPages, Model.TotalCount)" />
+    </div></div>
+</div>
+<partial name="_CrudModal" />
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/crud.js" asp-append-version="true"></script>
+}

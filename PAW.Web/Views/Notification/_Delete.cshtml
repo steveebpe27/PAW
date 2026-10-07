@@ -1,0 +1,9 @@
+@model PAW.Models.DTO.NotificationDTO
+<p>¿Querés eliminar este registro? Esta acción se confirma al presionar Eliminar.</p>
+<p><strong>Id:</strong> @Model.Id</p>
+<form asp-action="Delete" asp-route-id="@ViewData["RecordId"]" method="post" data-crud-form>
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="page" value="@ViewData["Page"]" />
+    <button class="btn btn-danger" type="submit">Eliminar</button>
+    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+</form>

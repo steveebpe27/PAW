@@ -1,0 +1,18 @@
+@model PAW.Models.DTO.UserRoleDTO
+@{ var mode = (string)ViewData["Mode"]!; }
+<form asp-action="@mode" asp-route-id="@ViewData["RecordId"]" method="post" data-crud-form>
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="page" value="@ViewData["Page"]" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row"><div class="col-md-6 mb-3"><label asp-for="Id" class="form-label"></label><input asp-for="Id" type="number" step="1" class="form-control" /><span asp-validation-for="Id" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="RoldId" class="form-label"></label><select asp-for="RoldId" class="form-select">
+                <option value="">Seleccionar…</option>
+                @foreach (var option in ((IEnumerable<PAW.Models.DTO.LookupOption>)ViewData["RoldIdOptions"]!)) { <option value="@option.Id">@option.Id — @option.Name</option> }
+            </select><span asp-validation-for="RoldId" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="UserId" class="form-label"></label><select asp-for="UserId" class="form-select">
+                <option value="">Seleccionar…</option>
+                @foreach (var option in ((IEnumerable<PAW.Models.DTO.LookupOption>)ViewData["UserIdOptions"]!)) { <option value="@option.Id">@option.Id — @option.Name</option> }
+            </select><span asp-validation-for="UserId" class="text-danger"></span></div></div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+</form>

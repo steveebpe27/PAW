@@ -1,0 +1,12 @@
+@model PAW.Models.DTO.InventoryDTO
+<section class="card mb-3"><div class="card-header">Inventory</div><div class="card-body">
+<dl class="row">
+<dt class="col-sm-3">InventoryId</dt><dd class="col-sm-9">@Model.InventoryId</dd>
+<dt class="col-sm-3">UnitPrice</dt><dd class="col-sm-9">@Model.UnitPrice</dd>
+<dt class="col-sm-3">UnitsInStock</dt><dd class="col-sm-9">@Model.UnitsInStock</dd>
+<dt class="col-sm-3">LastUpdated</dt><dd class="col-sm-9">@(Model.LastUpdated?.ToString("yyyy-MM-dd HH:mm") ?? "—")</dd>
+<dt class="col-sm-3">ProductId</dt><dd class="col-sm-9">@Model.ProductId</dd>
+<dt class="col-sm-3">DateAdded</dt><dd class="col-sm-9">@(Model.DateAdded?.ToString("yyyy-MM-dd HH:mm") ?? "—")</dd>
+<dt class="col-sm-3">ModifiedBy</dt><dd class="col-sm-9">@Model.ModifiedBy</dd>
+</dl>
+</div></section>

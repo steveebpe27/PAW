@@ -1,0 +1,31 @@
+@model PAW.Web.Models.PagerModel
+@{
+    var current = Model.Page;
+    var last = Model.TotalPages;
+}
+<div class="d-flex justify-content-between align-items-center flex-wrap mt-3">
+    <small class="text-muted">@Model.TotalCount registros · Página @current de @last · máximo 25 por página</small>
+    <nav aria-label="Paginación"><ul class="pagination mb-0">
+        <li class="page-item @(current == 1 ? "disabled" : "")">
+            @if (current > 1) { <a class="page-link" asp-action="Index" asp-route-page="1" aria-label="First">&lt;&lt;</a> }
+            else { <span class="page-link" aria-disabled="true">&lt;&lt;</span> }
+        </li>
+        <li class="page-item @(current == 1 ? "disabled" : "")">
+            @if (current > 1) { <a class="page-link" asp-action="Index" asp-route-page="@(current - 1)" aria-label="Previous">&lt;</a> }
+            else { <span class="page-link" aria-disabled="true">&lt;</span> }
+        </li>
+        @if (current > 2) { <li class="page-item disabled"><span class="page-link">…</span></li> }
+        @if (current > 1) { <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@(current - 1)">@(current - 1)</a></li> }
+        <li class="page-item active"><span class="page-link" aria-current="page">@current</span></li>
+        @if (current < last) { <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@(current + 1)">@(current + 1)</a></li> }
+        @if (current < last - 1) { <li class="page-item disabled"><span class="page-link">…</span></li> }
+        <li class="page-item @(current == last ? "disabled" : "")">
+            @if (current < last) { <a class="page-link" asp-action="Index" asp-route-page="@(current + 1)" aria-label="Next">&gt;</a> }
+            else { <span class="page-link" aria-disabled="true">&gt;</span> }
+        </li>
+        <li class="page-item @(current == last ? "disabled" : "")">
+            @if (current < last) { <a class="page-link" asp-action="Index" asp-route-page="@last" aria-label="Last">&gt;&gt;</a> }
+            else { <span class="page-link" aria-disabled="true">&gt;&gt;</span> }
+        </li>
+    </ul></nav>
+</div>

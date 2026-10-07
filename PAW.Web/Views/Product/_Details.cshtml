@@ -1,0 +1,21 @@
+@model PAW.Models.DTO.ProductDetailsDTO
+<h4>Product</h4>
+<dl class="row">
+<dt class="col-sm-3">ProductId</dt><dd class="col-sm-9">@Model.Product.ProductId</dd>
+<dt class="col-sm-3">Name</dt><dd class="col-sm-9">@Model.Product.Name</dd>
+<dt class="col-sm-3">InventoryId</dt><dd class="col-sm-9">@Model.Product.InventoryId</dd>
+<dt class="col-sm-3">SupplierId</dt><dd class="col-sm-9">@Model.Product.SupplierId</dd>
+<dt class="col-sm-3">Description</dt><dd class="col-sm-9">@Model.Product.Description</dd>
+<dt class="col-sm-3">Rating</dt><dd class="col-sm-9">@Model.Product.Rating</dd>
+<dt class="col-sm-3">CategoryId</dt><dd class="col-sm-9">@Model.Product.CategoryId</dd>
+<dt class="col-sm-3">LastModified</dt><dd class="col-sm-9">@(Model.Product.LastModified?.ToString("yyyy-MM-dd HH:mm") ?? "—")</dd>
+<dt class="col-sm-3">ModifiedBy</dt><dd class="col-sm-9">@Model.Product.ModifiedBy</dd>
+<dt class="col-sm-3">CreatedBy</dt><dd class="col-sm-9">@Model.Product.CreatedBy</dd>
+</dl>
+@if (Model.Inventory is not null) { <partial name="_InventoryDetails" model="Model.Inventory" /> }
+else { <p class="text-muted">Sin Inventory asociado.</p> }
+@if (Model.Category is not null) { <partial name="_CategoryDetails" model="Model.Category" /> }
+else { <p class="text-muted">Sin Category asociada.</p> }
+@if (Model.Supplier is not null) { <partial name="_SupplierDetails" model="Model.Supplier" /> }
+else { <p class="text-muted">Sin Supplier asociado.</p> }
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

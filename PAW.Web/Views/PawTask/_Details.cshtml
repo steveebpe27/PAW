@@ -1,0 +1,12 @@
+@model PAW.Models.DTO.PawTaskDTO
+<dl class="row">
+<dt class="col-sm-3">Id</dt><dd class="col-sm-9">@Model.Id</dd>
+<dt class="col-sm-3">Name</dt><dd class="col-sm-9">@Model.Name</dd>
+<dt class="col-sm-3">Description</dt><dd class="col-sm-9">@Model.Description</dd>
+<dt class="col-sm-3">Status</dt><dd class="col-sm-9">@Model.Status</dd>
+<dt class="col-sm-3">DueDate</dt><dd class="col-sm-9">@(Model.DueDate?.ToString("yyyy-MM-dd HH:mm") ?? "—")</dd>
+<dt class="col-sm-3">CreatedAt</dt><dd class="col-sm-9">@(Model.CreatedAt?.ToString("yyyy-MM-dd HH:mm") ?? "—")</dd>
+<dt class="col-sm-3">LastModified</dt><dd class="col-sm-9">@(Model.LastModified?.ToString("yyyy-MM-dd HH:mm") ?? "—")</dd>
+<dt class="col-sm-3">ModifiedBy</dt><dd class="col-sm-9">@Model.ModifiedBy</dd>
+</dl>
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

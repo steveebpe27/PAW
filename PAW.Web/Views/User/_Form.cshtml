@@ -1,0 +1,24 @@
+@model PAW.Models.DTO.UserDTO
+@{ var mode = (string)ViewData["Mode"]!; }
+<form asp-action="@mode" asp-route-id="@ViewData["RecordId"]" method="post" data-crud-form>
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="page" value="@ViewData["Page"]" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row"><div class="col-md-6 mb-3"><label asp-for="Username" class="form-label"></label><input asp-for="Username" class="form-control" /><span asp-validation-for="Username" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" /><span asp-validation-for="Email" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="CreatedAt" class="form-label"></label><input asp-for="CreatedAt" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" class="form-control" /><span asp-validation-for="CreatedAt" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="IsActive" class="form-label"></label><select asp-for="IsActive" class="form-select"><option value="">Sin valor</option><option value="true">Sí</option><option value="false">No</option></select><span asp-validation-for="IsActive" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="LastModified" class="form-label"></label><input asp-for="LastModified" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" class="form-control" /><span asp-validation-for="LastModified" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="ModifiedBy" class="form-label"></label><input asp-for="ModifiedBy" class="form-control" /><span asp-validation-for="ModifiedBy" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="RoleId" class="form-label"></label><select asp-for="RoleId" class="form-select">
+                <option value="">Seleccionar…</option>
+                @foreach (var option in ((IEnumerable<PAW.Models.DTO.LookupOption>)ViewData["RoleIdOptions"]!)) { <option value="@option.Id">@option.Id — @option.Name</option> }
+            </select><span asp-validation-for="RoleId" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="LastModifiedBy" class="form-label"></label><input asp-for="LastModifiedBy" class="form-control" /><span asp-validation-for="LastModifiedBy" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="NewPassword" class="form-label">Nueva contraseña</label>
+        <input name="NewPassword" type="password" class="form-control" autocomplete="new-password" minlength="8" maxlength="128" />
+        <small class="text-muted">Obligatoria al crear. Al editar, dejala vacía para conservar la actual.</small>
+        <span asp-validation-for="NewPassword" class="text-danger"></span></div></div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+</form>

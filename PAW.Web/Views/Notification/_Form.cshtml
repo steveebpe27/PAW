@@ -1,0 +1,16 @@
+@model PAW.Models.DTO.NotificationDTO
+@{ var mode = (string)ViewData["Mode"]!; }
+<form asp-action="@mode" asp-route-id="@ViewData["RecordId"]" method="post" data-crud-form>
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="page" value="@ViewData["Page"]" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row"><div class="col-md-6 mb-3"><label asp-for="UserId" class="form-label"></label><select asp-for="UserId" class="form-select">
+                <option value="">Seleccionar…</option>
+                @foreach (var option in ((IEnumerable<PAW.Models.DTO.LookupOption>)ViewData["UserIdOptions"]!)) { <option value="@option.Id">@option.Id — @option.Name</option> }
+            </select><span asp-validation-for="UserId" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="Message" class="form-label"></label><textarea asp-for="Message" class="form-control" rows="3"></textarea><span asp-validation-for="Message" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="IsRead" class="form-label"></label><select asp-for="IsRead" class="form-select"><option value="">Sin valor</option><option value="true">Sí</option><option value="false">No</option></select><span asp-validation-for="IsRead" class="text-danger"></span></div>
+<div class="col-md-6 mb-3"><label asp-for="CreatedAt" class="form-label"></label><input asp-for="CreatedAt" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" class="form-control" /><span asp-validation-for="CreatedAt" class="text-danger"></span></div></div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+</form>
