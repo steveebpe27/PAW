@@ -1,0 +1,41 @@
+@model PAW.Web.Models.ExchangeRateViewModel
+@using System.Globalization
+@{
+    var culture = CultureInfo.GetCultureInfo("es-CR");
+}
+
+<section class="mb-4" aria-label="Tipo de cambio">
+    @if (Model.TipoCambio is null)
+    {
+        <div class="alert alert-warning" role="status">
+            @(Model.ErrorMessage ?? "El tipo de cambio no está disponible en este momento.")
+        </div>
+    }
+    else
+    {
+        var rates = Model.TipoCambio;
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <h2 class="h4">Dollar Exchange Rate</h2>
+                        <p class="mb-1">Compra (CRC por USD): <strong>@rates.Dolar.Compra.Valor.ToString("N2", culture)</strong></p>
+                        <p class="text-muted small">Fecha compra: @rates.Dolar.Compra.Fecha.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)</p>
+                        <p class="mb-1">Venta (CRC por USD): <strong>@rates.Dolar.Venta.Valor.ToString("N2", culture)</strong></p>
+                        <p class="text-muted small mb-0">Fecha venta: @rates.Dolar.Venta.Fecha.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="h4">Euro Exchange Rate</h2>
+                        <p class="mb-1">Dólares por EUR: <strong>@rates.Euro.Dolares.ToString("N4", culture)</strong></p>
+                        <p class="mb-1">Colones por EUR: <strong>@rates.Euro.Colones.ToString("N2", culture)</strong></p>
+                        <p class="text-muted small mb-0">Fecha: @rates.Euro.Fecha.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)</p>
+                    </div>
+                </div>
+                <p class="text-muted small mt-3 mb-0">
+                    Fuente: <a href="https://api.hacienda.go.cr/indicadores/tc" target="_blank" rel="noopener noreferrer">Ministerio de Hacienda de Costa Rica</a>.
+                    Se muestran las fechas publicadas por la fuente.
+                </p>
+            </div>
+        </div>
+    }
+</section>

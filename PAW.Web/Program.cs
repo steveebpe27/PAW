@@ -21,6 +21,17 @@ builder.Services.AddScoped<IPawTaskService, PawTaskService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserActionService, UserActionService>();
 builder.Services.AddScoped<IUserRoleService, UserRoleService>();
+builder.Services.AddHttpClient<TipoCambioClient>(client =>
+{
+    client.BaseAddress = new Uri("https://api.hacienda.go.cr/");
+    client.Timeout = TimeSpan.FromSeconds(10);
+    client.DefaultRequestVersion = System.Net.HttpVersion.Version11;
+    client.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionExact;
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("PAW.Web/1.0");
+    client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
+});
+builder.Services.AddScoped<IExchangeRateService, ExchangeRateService>();
+
 var app = builder.Build();
 if (!app.Environment.IsDevelopment()) { app.UseExceptionHandler("/Home/Error"); app.UseHsts(); }
 app.UseHttpsRedirection();
