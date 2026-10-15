@@ -1,41 +1,41 @@
-@model PAW.Web.Models.ExchangeRateViewModel
-@using System.Globalization
-@{
-    var culture = CultureInfo.GetCultureInfo("es-CR");
-}
-
-<section class="mb-4" aria-label="Tipo de cambio">
-    @if (Model.TipoCambio is null)
-    {
-        <div class="alert alert-warning" role="status">
-            @(Model.ErrorMessage ?? "El tipo de cambio no está disponible en este momento. ")
+@* El HTML no contiene valores: site.js carga y cachea el tipo de cambio. *@
+<aside id="exchange-rate" class="exchange-widget" data-exchange-widget aria-label="Tipo de cambio de Hacienda" aria-busy="true">
+    <header class="exchange-heading">
+        <span class="exchange-symbol" aria-hidden="true">₡</span>
+        <div class="exchange-heading-text">
+            <h2>Tipo de cambio</h2>
+            <span>Costa Rica · USD / EUR</span>
         </div>
-    }
-    else
-    {
-        var rates = Model.TipoCambio;
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <h2 class="h4">Dollar Exchange Rate</h2>
-                        <p class="mb-1">Compra (CRC por USD): <strong>@rates.Dolar.Compra.Valor.ToString("N2", culture)</strong></p>
-                        <p class="text-muted small">Fecha compra: @rates.Dolar.Compra.Fecha.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)</p>
-                        <p class="mb-1">Venta (CRC por USD): <strong>@rates.Dolar.Venta.Valor.ToString("N2", culture)</strong></p>
-                        <p class="text-muted small mb-0">Fecha venta: @rates.Dolar.Venta.Fecha.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h2 class="h4">Euro Exchange Rate</h2>
-                        <p class="mb-1">Dólares por EUR: <strong>@rates.Euro.Dolares.ToString("N4", culture)</strong></p>
-                        <p class="mb-1">Colones por EUR: <strong>@rates.Euro.Colones.ToString("N2", culture)</strong></p>
-                        <p class="text-muted small mb-0">Fecha: @rates.Euro.Fecha.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)</p>
-                    </div>
+        <button type="button" class="exchange-toggle" data-exchange-toggle aria-controls="exchange-body" aria-expanded="true" aria-label="Minimizar tipo de cambio">
+            <span data-exchange-toggle-icon aria-hidden="true">−</span>
+        </button>
+    </header>
+    <div id="exchange-body" class="exchange-body">
+        <p class="exchange-status" data-exchange-status role="status" aria-live="polite">Consultando Hacienda…</p>
+        <div data-exchange-values hidden>
+            <section class="exchange-currency" aria-labelledby="exchange-usd">
+                <div class="exchange-currency-title"><h3 id="exchange-usd">USD <span>Dólar estadounidense</span></h3><span class="exchange-unit">CRC / USD</span></div>
+                <div class="exchange-quotes">
+                    <div><span>Compra</span><strong data-rate="buy">—</strong></div>
+                    <div><span>Venta</span><strong data-rate="sell">—</strong></div>
                 </div>
-                <p class="text-muted small mt-3 mb-0">
-                    Fuente: <a href="https://api.hacienda.go.cr/indicadores/tc" target="_blank" rel="noopener noreferrer">Ministerio de Hacienda de Costa Rica</a>.
-                    Se muestran las fechas publicadas por la fuente.
-                </p>
-            </div>
+                <p class="exchange-date">Compra: <span data-rate="buy-date">—</span> · Venta: <span data-rate="sell-date">—</span></p>
+            </section>
+            <section class="exchange-currency" aria-labelledby="exchange-eur">
+                <div class="exchange-currency-title"><h3 id="exchange-eur">EUR <span>Euro</span></h3><span class="exchange-unit">POR EUR</span></div>
+                <div class="exchange-quotes exchange-quotes-euro">
+                    <div><span>Dólares</span><strong data-rate="euro-usd">—</strong></div>
+                    <div><span>Colones</span><strong data-rate="euro-crc">—</strong></div>
+                </div>
+                <p class="exchange-date">Fecha de referencia: <span data-rate="euro-date">—</span></p>
+            </section>
         </div>
-    }
-</section>
+        <p class="exchange-cache" data-exchange-cache>La consulta se guarda por 15 minutos en este navegador.</p>
+        <button class="exchange-refresh" type="button" data-exchange-refresh>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5M6.1 7a7 7 0 0 1 11.5-1L20 9M4 15l2.4 3A7 7 0 0 0 17.9 17" /></svg>
+            Actualizar
+        </button>
+        <a class="exchange-source" href="https://api.hacienda.go.cr/indicadores/tc" target="_blank" rel="noopener noreferrer">Fuente: Ministerio de Hacienda ↗</a>
+        <noscript><p class="exchange-status">Activá JavaScript para consultar el tipo de cambio.</p></noscript>
+    </div>
+</aside>

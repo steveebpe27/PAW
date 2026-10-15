@@ -20,3 +20,84 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Tipo de cambio flotante. Menor z-index que los modales de Bootstrap. */
+.exchange-widget {
+    position: fixed;
+    top: var(--exchange-top, 84px);
+    right: 24px;
+    z-index: 1030;
+    width: 326px;
+    max-width: calc(100vw - 32px);
+    max-height: calc(100dvh - var(--exchange-top, 84px) - 16px);
+    overflow-y: auto;
+    border: 1px solid #dbe5ed;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 16px 48px #102a4329, 0 3px 9px #102a4314;
+    font-family: inherit;
+    color: #183247;
+}
+.exchange-heading {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 17px 18px;
+    color: #fff;
+    background: linear-gradient(125deg, #142e48, #20516a);
+}
+.exchange-symbol {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #ffffff18;
+    color: #90eadb;
+    font-size: 25px;
+    font-weight: 700;
+}
+.exchange-heading-text { flex: 1; }
+.exchange-heading h2 { margin: 0 0 3px; font-size: 16px; font-weight: 700; letter-spacing: .1px; }
+.exchange-heading-text > span { display: block; font-size: 11px; color: #c4dce6; }
+.exchange-toggle { border: 1px solid #ffffff35; border-radius: 9px; background: #ffffff12; color: #fff; width: 32px; height: 32px; font-size: 22px; line-height: 1; }
+.exchange-toggle:hover { background: #ffffff29; }
+.exchange-body { padding: 16px 18px 14px; }
+.exchange-body[hidden], .exchange-widget [hidden] { display: none !important; }
+.exchange-status { display: flex; align-items: center; gap: 7px; margin: 0 0 15px; font-size: 11px; font-weight: 600; color: #1c7c68; }
+.exchange-status::before { content: ''; display: block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.exchange-widget[data-state="stale"] .exchange-status { color: #986309; }
+.exchange-widget[data-state="error"] .exchange-status { color: #b02a37; }
+.exchange-currency + .exchange-currency { border-top: 1px solid #e9eef3; padding-top: 14px; margin-top: 14px; }
+.exchange-currency-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 9px; }
+.exchange-currency-title h3 { margin: 0; font-size: 13px; font-weight: 750; }
+.exchange-currency-title h3 span { display: block; font-size: 10px; color: #667d8e; font-weight: 400; margin-top: 3px; }
+.exchange-unit { color: #718b9d; font-size: 9px; letter-spacing: .6px; }
+.exchange-quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.exchange-quotes > div { padding: 10px 11px; background: #edf7f4; border: 1px solid #dcefe7; border-radius: 10px; }
+.exchange-quotes > div > span { display: block; font-size: 10px; color: #587468; margin-bottom: 4px; }
+.exchange-quotes strong { display: block; font-size: 19px; font-weight: 750; color: #176d58; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.exchange-quotes-euro > div { background: #f1f5fa; border-color: #e3eaf3; }
+.exchange-quotes-euro strong { font-size: 18px; color: #285e88; }
+.exchange-quotes-euro > div > span { color: #61778a; }
+.exchange-date { margin: 8px 0 0; color: #738493; font-size: 9px; }
+.exchange-cache { margin: 15px 0 11px; font-size: 10px; line-height: 1.6; color: #687c8d; }
+.exchange-refresh { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; padding: 9px; background: #183c56; border: 1px solid #183c56; color: #fff; border-radius: 9px; font-size: 11px; font-weight: 650; }
+.exchange-refresh:hover { background: #245777; }
+.exchange-refresh:disabled { opacity: .6; cursor: wait; }
+.exchange-refresh svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.exchange-widget[data-loading="true"] .exchange-refresh svg { animation: exchange-spin 1s linear infinite; }
+.exchange-source { display: block; text-align: center; font-size: 9px; color: #637c8d; margin-top: 11px; text-decoration: none; }
+.exchange-source:hover { color: #183c56; text-decoration: underline; }
+.exchange-toggle:focus-visible, .exchange-refresh:focus-visible, .exchange-source:focus-visible { outline: 3px solid #39b7a2; outline-offset: 3px; }
+@keyframes exchange-spin { to { transform: rotate(360deg); } }
+@media (max-width: 700px) {
+    .exchange-widget { right: 16px; width: 310px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .exchange-widget[data-loading="true"] .exchange-refresh svg { animation: none; }
+}
+@media print {
+    .exchange-widget { display: none !important; }
+}
