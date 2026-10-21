@@ -1,0 +1,41 @@
+@model PAW.Models.DTO.PawTaskDTO
+@{ var mode = (string)ViewData["Mode"]!; }
+<form asp-action="@mode" asp-route-id="@ViewData["RecordId"]" method="post" data-crud-form>
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="page" value="@ViewData["Page"]" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="Name" class="form-label">Nombre</label>
+            <input asp-for="Name" class="form-control" required maxlength="255" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="Status" class="form-label">Estado</label>
+            <input asp-for="Status" class="form-control" maxlength="50" list="task-statuses" />
+            <datalist id="task-statuses"><option value="Pendiente"></option><option value="En progreso"></option><option value="Finalizada"></option></datalist>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="col-12 mb-3">
+            <label asp-for="Description" class="form-label">Descripción</label>
+            <textarea asp-for="Description" class="form-control" rows="3" maxlength="1000"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="DueDate" class="form-label">Vencimiento</label>
+            <input asp-for="DueDate" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" class="form-control" min="1753-01-01T00:00" />
+            <span asp-validation-for="DueDate" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="ModifiedBy" class="form-label">Modificado por</label>
+            <input asp-for="ModifiedBy" class="form-control" maxlength="255" />
+            <span asp-validation-for="ModifiedBy" class="text-danger"></span>
+        </div>
+    </div>
+    @if (mode == "Edit")
+    {
+        <p class="small text-muted">Creación (UTC): @(Model.CreatedAt?.ToString("yyyy-MM-dd HH:mm") ?? "—") · Última modificación (UTC): @(Model.LastModified?.ToString("yyyy-MM-dd HH:mm") ?? "—")</p>
+    }
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+</form>

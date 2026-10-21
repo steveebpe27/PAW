@@ -1,0 +1,39 @@
+@baseUrl = https://localhost:7210
+@id = 1
+
+### Listar (máximo 25 por página)
+GET {{baseUrl}}/tasks?page=1&pageSize=25
+Accept: application/json
+
+### Detalle: reemplazá id por una tarea existente
+GET {{baseUrl}}/tasks/{{id}}
+
+### Crear: anotá el Id que devuelve, usalo arriba y en las siguientes solicitudes
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+
+{
+  "name": "Preparar entrega Minimal API",
+  "description": "Tarea de ejemplo para la demostración",
+  "status": "Pendiente",
+  "dueDate": "2026-11-01T18:00:00",
+  "modifiedBy": "Estudiante"
+}
+
+### Actualizar el registro creado (PUT reemplaza todos los campos editables)
+PUT {{baseUrl}}/tasks/{{id}}
+Content-Type: application/json
+
+{
+  "name": "Preparar entrega Minimal API",
+  "description": "Entrega revisada",
+  "status": "Finalizada",
+  "dueDate": "2026-11-01T18:00:00",
+  "modifiedBy": "Estudiante"
+}
+
+### Eliminar: solo el registro que creaste para la prueba
+DELETE {{baseUrl}}/tasks/{{id}}
+
+### OpenAPI (JSON; no instala Swagger UI)
+GET {{baseUrl}}/openapi/v1.json

@@ -21,6 +21,9 @@ builder.Services.AddScoped<IPawTaskService, PawTaskService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserActionService, UserActionService>();
 builder.Services.AddScoped<IUserRoleService, UserRoleService>();
+builder.Services.AddHttpClient<MinimalApiClient>(client => client.BaseAddress = new Uri(
+    builder.Configuration["MinimalApiBaseUrl"] ?? "https://localhost:7210/"));
+
 var app = builder.Build();
 if (!app.Environment.IsDevelopment()) { app.UseExceptionHandler("/Home/Error"); app.UseHsts(); }
 app.UseHttpsRedirection();
