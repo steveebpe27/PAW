@@ -9,7 +9,7 @@
 
             for (int i = 0; i < secs; i++)
             {
-                Console.WriteLine($"{identifier} Second {i = 1}");
+                Console.WriteLine($"{identifier} Second {i + 1}");
 
             }
 
@@ -25,7 +25,7 @@
             for (decimal i = 0; i < secs; i++)
             {
                 if (i % 100000000 == 0)
-                Console.WriteLine($"{identifier} Second {i = 1}");
+                Console.WriteLine($"{identifier} Second {i + 1}");
 
             }
 
@@ -41,7 +41,7 @@
 
             for (int i = 0; i < secs; i++)
             {
-                items.Add($"{identifier} Second {i = 1}");
+                items.Add($"{identifier} Second {i + 1}");
 
             }
 
