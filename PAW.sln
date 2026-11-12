@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36212.18 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.10.12224.181 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAW.Web", "PAW.Web\PAW.Web.csproj", "{0F342937-4DAE-42E5-9789-97384BFDACE2}"
 EndProject
@@ -13,6 +13,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAW.Architecture", "PAW.Architecture\PAW.Architecture.csproj", "{168DB680-82D5-3A8D-C8CB-420529DB86CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAW.MinimalAPI", "PAW.MinimalAPI\PAW.MinimalAPI.csproj", "{A587F95D-167B-4CFD-B9EC-87476C85C74B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAW.Tasks", "PAW.Tasks\PAW.Tasks.csproj", "{BA9F3931-6FEF-4457-94B9-3E1DFD2B8941}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{A587F95D-167B-4CFD-B9EC-87476C85C74B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A587F95D-167B-4CFD-B9EC-87476C85C74B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A587F95D-167B-4CFD-B9EC-87476C85C74B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA9F3931-6FEF-4457-94B9-3E1DFD2B8941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9F3931-6FEF-4457-94B9-3E1DFD2B8941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9F3931-6FEF-4457-94B9-3E1DFD2B8941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9F3931-6FEF-4457-94B9-3E1DFD2B8941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

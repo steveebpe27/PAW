@@ -5,6 +5,8 @@ using PAW.DataAccess.MSSQL;
 using PAW.DataAccess.Repositories;
 using PAW.Models;
 using PAW.Models.DTO;
+using PAW.Tasks;
+
 namespace PAW.API.Controllers;
 [ApiController]
 [Route("[controller]")]
@@ -42,5 +44,18 @@ public class ProductController(IProductRepository repository, ProductDbContext c
             Inventory = product.Inventory is null ? null : InventoryDTO.ConvertFrom(product.Inventory),
             Category = product.Category is null ? null : CategoryDTO.ConvertFrom(product.Category),
             Supplier = product.Supplier is null ? null : SupplierDTO.ConvertFrom(product.Supplier) };
+    }
+
+    [HttpGet("/api/a")]
+    public async Task<IEnumerable<string>> GetSyncA()
+    {
+        return await Sync.ExecuteItems(100, "AAA");
+    }
+
+    [HttpGet("/api/b")]
+    public IEnumerable<string> GetSyncB()
+    {
+        Sync.ExecuteEval(1000000000000, "BBB").Wait();
+        return ["Your taks was schedule"];
     }
 }
